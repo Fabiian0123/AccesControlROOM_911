@@ -190,9 +190,11 @@ Route::post('/user/logout', function (Request $request) {
 
 //Ruta UX en vivo 
 Route::get('/admin/employees/list', function (Request $request) {
-    $from = $request->query('from');
-    $to   = $request->query('to');
+    $from = $request->query('from') ?? $request->query('start_date');
+    $to   = $request->query('to')   ?? $request->query('end_date');
+
     $query = Employed::with('department:id,name');
+
     if ($from || $to) {
         $query->whereHas('accessLogs', function ($q) use ($from, $to) {
             if ($from) {
@@ -203,6 +205,7 @@ Route::get('/admin/employees/list', function (Request $request) {
             }
         });
     }
+
     $employees = $query->get();
     return response()->json($employees);
 })->name('admin.employees.list');

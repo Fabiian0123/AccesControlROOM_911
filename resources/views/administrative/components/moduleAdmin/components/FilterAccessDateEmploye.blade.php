@@ -7,7 +7,8 @@
                 type="date"
                 id="filter-start-date"
                 class="filter-input-date"
-            >
+                name="start_date"
+            />
         </div>
 
         <div class="filter-date-group">
@@ -16,7 +17,8 @@
                 type="date"
                 id="filter-end-date"
                 class="filter-input-date"
-            >
+                name="end_date"
+            />
         </div>
     </div>
 </div>

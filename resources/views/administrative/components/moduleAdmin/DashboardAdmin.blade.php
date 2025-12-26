@@ -29,6 +29,9 @@
         <div style="margin-top: -2.5rem;">
             @include('administrative.components.moduleAdmin.components.TableEmploye', ['employees' => $employees])
         </div>
+        <div>
+            @include('administrative.components.moduleAdmin.components.BtnImportEmployees')
+        </div>
         <div class="general-history">
             @include('administrative.components.moduleAdmin.components.GlobalHistoryButton')
         </div>
@@ -44,9 +47,7 @@
         <div>
             @include('administrative.components.moduleAdmin.components.BtnClearFilter')
         </div>
-        <div>
-            @include('administrative.components.moduleAdmin.components.BtnImportEmployees')
-        </div>
+        
     </div>
     <script src="{{ asset('js/AddEmployed.js') }}"></script>
     <script src="{{ asset('js/EmployeesTable.js') }}"></script>
@@ -56,8 +57,6 @@
     <script src="{{ asset('js/HistoryEmployee.js') }}"></script>
     <script src="{{ asset('js/GlobalHistory.js') }}"></script> 
     <script src="{{ asset('js/ImportEmployees.js') }}"></script>
-
-
 </body>
 </html>
 

@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('employees-tbody');
     const filterInputId = document.getElementById('filter-employee-id');
     const filterSelectDept = document.getElementById('filter-department');
-    const filterInitialDate = document.getElementById('filter-initial-date');
-    const filterFinalDate = document.getElementById('filter-final-date');
+
+    // ✅ IDs correctos según tu HTML
+    const filterInitialDate = document.getElementById('filter-start-date');
+    const filterFinalDate = document.getElementById('filter-end-date');
+
     const btnClearFilters = document.getElementById('btn-clear-filters');
 
     if (!tbody) return;
@@ -20,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let employeesToShow = allEmployees;
 
-        // 🔹 Aquí cambiamos la lógica del filtro:
-        // Antes solo hacía startsWith sobre employed_id,
-        // ahora busca en ID, firstname_id y last_name.
         if (currentFilterId) {
             const term = currentFilterId.toLowerCase();
 
@@ -96,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const params = [];
             if (currentInitialDate) {
-                params.push(`initial_date=${encodeURIComponent(currentInitialDate)}`);
+                params.push(`from=${encodeURIComponent(currentInitialDate)}`);
             }
             if (currentFinalDate) {
-                params.push(`final_date=${encodeURIComponent(currentFinalDate)}`);
+                params.push(`to=${encodeURIComponent(currentFinalDate)}`);
             }
 
             if (params.length > 0) {
-                url = `/admin/employees/by-access-range?${params.join('&')}`;
+                url = `${url}?${params.join('&')}`;
             }
 
             const response = await fetch(url);
